@@ -1,4 +1,4 @@
-# AgentGuard 🛡️
+# AgentGuard
 
 [![Python Version](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688.svg)](https://fastapi.tiangolo.com/)
@@ -10,7 +10,7 @@
 
 ---
 
-## 📌 Overview
+## Overview
 
 As autonomous AI agents are granted access to real-world environments via tool calling (e.g., executing shell commands, querying databases, running code), securing these execution pathways becomes mission-critical. LLMs are vulnerable to **prompt injection**, **jailbreaks**, and **adversarial manipulation**, which can lead to catastrophic actions like unauthorized file deletion, remote code execution, or data exfiltration.
 
@@ -20,21 +20,21 @@ As autonomous AI agents are granted access to real-world environments via tool c
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
-- **🛡️ Dual-Layer Threat Detection**:
+- ** Dual-Layer Threat Detection**:
   - **Semantic Intent Analysis**: Detects semantic jailbreaks and system override attempts even when obfuscated or rephrased, using cosine similarity against established jailbreak anchors.
   - **Destructive Command Guard**: Catches high-risk commands (e.g., `rm -rf`, `bash -i`, `wget http`) across sensitive tools like `execute_bash`, `run_script`, and `sql_query`.
-- **🔒 Zero-Trust Tool Interception**: Evaluates both high-level user intent (`raw_prompt`) and granular tool parameters (`arguments`) before granting execution rights.
-- **⚡ Strict Schema Validation**: Backed by Pydantic V2 with strict mode and forbidden extra fields (`extra="forbid"`), preventing prototype poisoning or malformed parameter injection.
-- **🔌 Flexible Integration Options**:
+- ** Zero-Trust Tool Interception**: Evaluates both high-level user intent (`raw_prompt`) and granular tool parameters (`arguments`) before granting execution rights.
+- ** Strict Schema Validation**: Backed by Pydantic V2 with strict mode and forbidden extra fields (`extra="forbid"`), preventing prototype poisoning or malformed parameter injection.
+- ** Flexible Integration Options**:
   - **Standalone HTTP Proxy**: Deployable as a FastAPI microservice (`POST /api/v1/execute-tool`).
   - **In-Memory Middleware**: Drop-in Python middleware class (`AgentGuardMiddleware`) for direct integration into LangChain, AutoGen, CrewAI, LlamaIndex, or custom agent frameworks.
-- **📊 Standardized Error Telemetry**: Returns actionable machine-readable security codes (`ERR_SEMANTIC_JAILBREAK`, `ERR_UNAUTHORIZED_COMMAND`) and descriptive reasons for security auditing.
+- ** Standardized Error Telemetry**: Returns actionable machine-readable security codes (`ERR_SEMANTIC_JAILBREAK`, `ERR_UNAUTHORIZED_COMMAND`) and descriptive reasons for security auditing.
 
 ---
 
-## 🏗️ Architecture & Flow
+##  Architecture & Flow
 
 ```
                       +-----------------------------+
@@ -72,10 +72,10 @@ As autonomous AI agents are granted access to real-world environments via tool c
 
 ---
 
-## 📁 Repository Structure
+## Repository Structure
 
 ```text
-Week 19 - AgentGuard/
+AgentGuard/
 ├── middleware.py        # Interceptor middleware coordinating scan pipelines
 ├── scanner.py           # Core SecurityScanner with semantic & regex analyzers
 ├── schemas.py           # Pydantic v2 schemas for requests and evaluations
@@ -90,7 +90,7 @@ Week 19 - AgentGuard/
 
 ---
 
-## ⚙️ Installation & Setup
+## Installation & Setup
 
 ### 1. Prerequisites
 - Python 3.10+ (tested on Python 3.14)
@@ -117,7 +117,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🖥️ Running the Server
+## Running the Server
 
 Start the FastAPI security gateway:
 
@@ -133,7 +133,7 @@ The server will be available at `http://localhost:8000`. You can explore interac
 
 ---
 
-## 📡 API Usage & Examples
+## API Usage & Examples
 
 ### Endpoint: `POST /api/v1/execute-tool`
 
@@ -218,7 +218,7 @@ curl -i -X POST http://127.0.0.1:8000/api/v1/execute-tool \
 
 ---
 
-## 🐍 Python Library Usage (In-Memory Middleware)
+## Python Library Usage (In-Memory Middleware)
 
 You can also embed `AgentGuardMiddleware` directly into your agent runtime without HTTP overhead:
 
@@ -248,7 +248,7 @@ else:
 
 ---
 
-## 🧪 Running Unit Tests
+## Running Unit Tests
 
 Run the test suite using `pytest`:
 
@@ -269,7 +269,7 @@ test_guard.py::test_dangerous_command_blocked PASSED                     [100%]
 
 ---
 
-## 🛡️ Security Engine Details
+## Security Engine Details
 
 | Component | Mechanism | Target Threats | Default Threshold / Rules |
 | :--- | :--- | :--- | :--- |
@@ -279,7 +279,7 @@ test_guard.py::test_dangerous_command_blocked PASSED                     [100%]
 
 ---
 
-## 🛣️ Roadmap & Planned Enhancements
+## Roadmap & Planned Enhancements
 
 - [ ] **Configurable Rules & Allowlist Engine**: YAML-based policy definitions for tool permissions per agent role.
 - [ ] **Database & SQL Injection Detection**: AST-based SQL query analysis for `sql_query` tools.
@@ -289,7 +289,7 @@ test_guard.py::test_dangerous_command_blocked PASSED                     [100%]
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 
